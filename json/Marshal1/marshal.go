@@ -10,13 +10,15 @@ type Server struct {
 	ServerIP   []string
 }
 
-type Command2 struct {
-	Fnc     string  `json:"fnc"`
-	Parames []param `json:"parames"`
+type Command struct {
+	Fnc string `json:fnc`
+	//Parames map[string]string `json:"parames"`
+	Parames []Param `json:parames`
 }
 
-type param struct {
-	name, value string
+type Param struct {
+	Name  string `json:"name"`
+	Value string `json:"value"`
 }
 
 func main() {
@@ -29,18 +31,27 @@ func main() {
 	//data, _ := json.Marshal(ser)
 	//fmt.Println(string(data))
 
-	command2 := &Command2{}
-	command2.Fnc = "init1"
+	var command Command
+	command.Fnc = "init1"
 
-	var paramArr []param
-	//param := make(map[string]string)
+	//var paramArr []Param
+	//Param := make(map[string]string)
 
-	//var param map[string]string;
-	//param := t["name"]
-	paramArr = append(paramArr, param{"ggg", "werwe"})
-	command2.Parames = paramArr
+	//var paramArr []Param;
+	//Param := t["name"]
+	command.Parames = append(command.Parames, Param{"sd", "vv"})
+	//command.Parames = paramArr
+	command.Parames = append(command.Parames, Param{"ggg2", "werwe2"})
+	command.Parames = append(command.Parames, Param{"gggw", "werwee"})
+	//
+	//fmt.Println(command.Parames)
 
-	fmt.Println(command2)
-	data2, _ := json.Marshal(command2)
+	//command.Parames = *command.Parames
+
+	//bytes, _ := json.Marshal(command)
+	//fmt.Printf("json:m,%s\n", bytes)
+
+	data2, _ := json.Marshal(command)
+	fmt.Println((data2))
 	fmt.Println(string(data2))
 }
