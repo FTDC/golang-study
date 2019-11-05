@@ -1,4 +1,4 @@
-package main
+package connect
 
 import (
 	"bufio"
@@ -12,13 +12,12 @@ type Command struct {
 	Parames []map[string]interface{} `json:"parames"`
 }
 
-
 func main() {
 	connectVpnFunc(1, "aes-256-cfb", "58Ssd2nn95", "120.79.96.245", "8101", "0|0|test34qcPxEJcrE4xVLa41J5")
 }
 
 func connectVpnFunc(connectType int, valueStr string, passwordStr string, urlStr string, portStr string, tokenStr string) {
-	command := &Command{};
+	command := &Command{}
 	if connectType == 1 {
 		command.Fnc = "startXRouteVPN"
 	} else {
@@ -47,7 +46,6 @@ func connectVpnFunc(connectType int, valueStr string, passwordStr string, urlStr
 
 	connectJson, _ := json.Marshal(command)
 	fmt.Println(string(connectJson))
-
 
 	conn, err := npipe.Dial(`\\.\pipe\VPNMainWindow`)
 	if err != nil {

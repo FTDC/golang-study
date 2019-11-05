@@ -50,7 +50,7 @@ func main() {
 			backMsg := jsonToMap(msg)
 
 			fmt.Println(backMsg)
-			if (backMsg["fnc"] == "initBack") {
+			if backMsg["fnc"] == "initBack" {
 				fmt.Println("init back")
 
 				// 设置pac
@@ -100,7 +100,7 @@ func jsonToMap(jsonString string) map[string]interface{} {
 
 //  获取 json 数据
 func getJsonData(cmd string) string {
-	command := &Command{};
+	command := &Command{}
 	switch cmd {
 
 	case "init":
@@ -178,11 +178,11 @@ func getJsonData(cmd string) string {
 
 	fmt.Println(string(data))
 
-	return string(data);
+	return string(data)
 }
 
 func initVPN(connectType int) {
-	command := &Command{};
+	command := &Command{}
 	command.Fnc = "init"
 	command.Parames = []map[string]interface{}{}
 	data, _ := json.Marshal(command)
@@ -192,7 +192,7 @@ func initVPN(connectType int) {
 
 func closeXRouteVPN(connectType int) {
 
-	command := &Command{};
+	command := &Command{}
 	var commandName string
 	if connectType == 1 {
 		commandName = "closePoliceVPN"
